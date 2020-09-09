@@ -1,0 +1,34 @@
+<div class="col-xs-3">
+  <h2>User info</h2>
+  <%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+  <table class="table">
+    <tbody>
+      <tr></tr>
+      <tr>
+        <th>name</th>
+        <th><%= user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= user.introduction %></th>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <%= link_to '', edit_user_path(current_user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+  </div>
+  <h2>New book</h2>
+  <%= form_with(model: Book.new, url: books_path, method: :post, local: true)do |f| %>
+    <div class="field row">
+      <strong>Title</strong>
+      <%= f.text_field :title, class:"col-xs-12" %>
+    </div>
+    <div class="field row">
+      <strong>Opinion</strong>
+      <%= f.text_area :body, class:"col-xs-12" %>
+    </div>
+    <div class="actions row">
+      <%= f.submit "Create Book", class:"col-xs-12 btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
